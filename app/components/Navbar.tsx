@@ -1,15 +1,30 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useCart } from "../store/cart";
-import { ShoppingBag, Menu, X, Search } from "lucide-react";
+import { ShoppingBag, Menu, X, MessageCircle } from "lucide-react";
 import CartDrawer from "./CartDrawer";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Archivo", href: "#archivo" },
-  { label: "Concepto", href: "#concepto" },
-  { label: "Tienda", href: "#archivo" },
+  { label: "Archivo", href: "/#archivo" },
+  { label: "Concepto", href: "/#concepto" },
+  { label: "Conjuntos", href: "/#conjuntos" },
+  { label: "Tienda", href: "/#archivo" },
 ];
+
+const INSTAGRAM_URL = "https://instagram.com/cyanotipia";
+const WHATSAPP_URL = "https://wa.me/5491100000000";
+
+// Inline SVG icon for Instagram (lucide doesn't have it)
+function InstagramIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}
 
 export default function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -30,29 +45,56 @@ export default function Navbar() {
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
 
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-        {/* Announcement bar */}
-        <div
-          className={`bg-[#0a0a0a] text-[#fafafa] overflow-hidden transition-all duration-500 ${
-            scrolled ? "h-0 opacity-0" : "h-auto opacity-100"
-          }`}
-        >
-          <p className="text-[9px] uppercase tracking-[0.55em] text-center py-2.5 font-medium">
-            envíos gratuitos en pedidos desde $30.000 — argentina
-          </p>
+
+        {/* Top bar: anuncio + redes sociales */}
+        <div className={`bg-[#0a0a0a] text-[#fafafa] overflow-hidden transition-all duration-500 ${
+          scrolled ? "h-0 opacity-0" : "h-auto opacity-100"
+        }`}>
+          <div className="max-w-[1500px] mx-auto px-8 md:px-16 flex items-center justify-between py-2.5">
+            {/* Redes sociales — izquierda */}
+            <div className="flex items-center gap-5">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de cyanotipia"
+                className="hover:opacity-50 transition-opacity flex items-center gap-1.5"
+              >
+                <InstagramIcon size={14} />
+                <span className="text-[8px] uppercase tracking-[0.3em] font-semibold hidden sm:block">Instagram</span>
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp de cyanotipia"
+                className="hover:opacity-50 transition-opacity flex items-center gap-1.5"
+              >
+                <MessageCircle size={14} strokeWidth={1.3} />
+                <span className="text-[8px] uppercase tracking-[0.3em] font-semibold hidden sm:block">WhatsApp</span>
+              </a>
+            </div>
+
+            {/* Anuncio — centro */}
+            <p className="text-[9px] uppercase tracking-[0.45em] font-medium absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
+              envíos gratis desde $30.000
+            </p>
+
+            {/* Espacio derecho para balance visual */}
+            <div className="w-[120px]" />
+          </div>
         </div>
 
         {/* Main nav */}
-        <nav
-          className={`transition-all duration-500 ${
-            scrolled
-              ? "glass-nav py-4 shadow-[0_1px_0_rgba(0,0,0,0.05)]"
-              : "bg-transparent py-8"
-          }`}
-        >
+        <nav className={`transition-all duration-500 ${
+          scrolled
+            ? "glass-nav py-3 shadow-[0_1px_0_rgba(0,0,0,0.05)]"
+            : "bg-transparent py-6"
+        }`}>
           <div className="max-w-[1500px] mx-auto px-8 md:px-16 grid grid-cols-3 items-center">
 
-            {/* Left */}
-            <div className="flex items-center gap-10 justify-start">
+            {/* Left — links de navegación */}
+            <div className="flex items-center gap-8 justify-start">
               <button
                 className="lg:hidden text-[#0a0a0a]"
                 onClick={() => setMenuOpen(true)}
@@ -60,18 +102,12 @@ export default function Navbar() {
               >
                 <Menu size={20} strokeWidth={1.2} />
               </button>
-              <div className="hidden lg:flex items-center gap-10">
-                <button
-                  aria-label="Buscar"
-                  className="hover:opacity-40 transition-opacity"
-                >
-                  <Search size={17} strokeWidth={1.3} />
-                </button>
+              <div className="hidden lg:flex items-center gap-8">
                 {navLinks.slice(0, 2).map((l) => (
                   <a
                     key={l.label}
                     href={l.href}
-                    className="text-[10px] uppercase tracking-[0.42em] font-semibold hover:opacity-40 transition-opacity"
+                    className="text-[10px] uppercase tracking-[0.38em] font-semibold hover:opacity-40 transition-opacity"
                   >
                     {l.label}
                   </a>
@@ -83,20 +119,20 @@ export default function Navbar() {
             <div className="flex justify-center">
               <a
                 href="/"
-                className="font-display text-[1.6rem] md:text-[2.4rem] tracking-[0.25em] font-light hover:opacity-50 transition-opacity duration-500"
+                className="font-display text-[1.5rem] md:text-[2.1rem] tracking-[0.25em] font-light hover:opacity-50 transition-opacity duration-500"
               >
                 cyanotipia
               </a>
             </div>
 
-            {/* Right */}
-            <div className="flex items-center gap-10 justify-end">
-              <div className="hidden lg:flex items-center gap-10">
+            {/* Right — links + carrito */}
+            <div className="flex items-center gap-8 justify-end">
+              <div className="hidden lg:flex items-center gap-8">
                 {navLinks.slice(2).map((l) => (
                   <a
                     key={l.label}
                     href={l.href}
-                    className="text-[10px] uppercase tracking-[0.42em] font-semibold hover:opacity-40 transition-opacity"
+                    className="text-[10px] uppercase tracking-[0.38em] font-semibold hover:opacity-40 transition-opacity"
                   >
                     {l.label}
                   </a>
@@ -123,6 +159,7 @@ export default function Navbar() {
                 )}
               </button>
             </div>
+
           </div>
         </nav>
       </header>
@@ -144,10 +181,7 @@ export default function Navbar() {
             >
               <X size={28} strokeWidth={1} />
             </button>
-            <a
-              href="/"
-              className="font-display text-2xl tracking-[0.3em] font-light mb-16 opacity-30"
-            >
+            <a href="/" className="font-display text-2xl tracking-[0.3em] font-light mb-16 opacity-30">
               cyanotipia
             </a>
             <nav className="flex flex-col items-center gap-10">
@@ -162,6 +196,15 @@ export default function Navbar() {
                 </a>
               ))}
             </nav>
+            {/* Redes en menú mobile */}
+            <div className="absolute bottom-12 flex items-center gap-8">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[9px] uppercase tracking-[0.4em] font-semibold opacity-40 hover:opacity-100 transition-opacity">
+                <InstagramIcon size={15} /> Instagram
+              </a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[9px] uppercase tracking-[0.4em] font-semibold opacity-40 hover:opacity-100 transition-opacity">
+                <MessageCircle size={15} strokeWidth={1.3} /> WhatsApp
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
