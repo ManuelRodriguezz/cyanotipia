@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ArrowRight, Instagram } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const links = {
   Colecciones: ["Ropa", "Maquillaje", "Accesorios", "Lo más nuevo"],
