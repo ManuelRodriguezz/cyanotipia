@@ -40,7 +40,7 @@ export default function Footer() {
             {/* Redes sociales */}
             <div className="flex items-center gap-5 pt-2">
               <a
-                href="https://instagram.com/cyanotipia"
+                href="https://instagram.com/cyanotipia_ind"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-white/40 hover:text-white transition-colors"
@@ -50,7 +50,7 @@ export default function Footer() {
                 <span className="text-[9px] uppercase tracking-[0.35em] font-semibold">Instagram</span>
               </a>
               <a
-                href="https://wa.me/5491100000000"
+                href="https://wa.me/5491132503050"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-white/40 hover:text-white transition-colors"
@@ -133,8 +133,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-5">
           <div className="flex gap-6">
-            <a href="https://instagram.com/cyanotipia" target="_blank" rel="noopener noreferrer" className="text-[9px] uppercase tracking-[0.3em] font-semibold text-white/35 hover:text-white transition-colors">Instagram</a>
-            <a href="https://wa.me/5491100000000" target="_blank" rel="noopener noreferrer" className="text-[9px] uppercase tracking-[0.3em] font-semibold text-white/35 hover:text-white transition-colors">WhatsApp</a>
+            <a href="https://instagram.com/cyanotipia_ind" target="_blank" rel="noopener noreferrer" className="text-[9px] uppercase tracking-[0.3em] font-semibold text-white/35 hover:text-white transition-colors">Instagram</a>
+            <a href="https://wa.me/5491132503050" target="_blank" rel="noopener noreferrer" className="text-[9px] uppercase tracking-[0.3em] font-semibold text-white/35 hover:text-white transition-colors">WhatsApp</a>
             <a href="#" className="text-[9px] uppercase tracking-[0.3em] font-semibold text-white/35 hover:text-white transition-colors">Pinterest</a>
           </div>
           <p className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-medium">
